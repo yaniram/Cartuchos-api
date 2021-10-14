@@ -2,7 +2,7 @@ import Express from "express"; //hacer un nuevo import
 import Cors from 'cors';
 import dotenv from 'dotenv';
 import { conectarBD } from './db/db.js';
-import rutasCartuchos from './views/cartucho/rutas.js';
+import rutasCartucho from './views/cartuchos/rutas.js';
 import rutasUsuario from './views/usuarios/rutas.js';
 import rutasVenta from './views/ventas/rutas.js';
 
@@ -13,7 +13,7 @@ const app = Express();
 
 app.use(Express.json());
 app.use(Cors());
-app.use(rutasCartuchos);
+app.use(rutasCartucho);
 app.use(rutasUsuario);
 app.use(rutasVenta);
 

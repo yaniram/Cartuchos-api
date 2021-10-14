@@ -1,13 +1,13 @@
 import Express from 'express';
 import {
-  queryAllCartuchos,
-  crearCartuchos,
-  editarCartuchos,
-  eliminarCartuchos,
-  consultarCartuchos,
+  queryAllCartridges,
+  crearCartucho,
+  editarCartucho,
+  eliminarCartucho,
+  consultarCartucho,
 } from '../../controllers/cartridge/controller.js';
 
-const rutasCartuchos = Express.Router();
+const rutasCartucho = Express.Router();
 
 const genericCallback = (res) => (err, result) => {
   if (err) {
@@ -18,29 +18,29 @@ const genericCallback = (res) => (err, result) => {
   }
 };
 
-rutasCartuchos.route('/cartuchos').get((req, res) => {
+rutasCartucho.route('/cartuchos').get((req, res) => {
   console.log('alguien hizo get en la ruta /cartuchos');
-  queryAllCartuchos(genericCallback(res));
+  queryAllCartridges(genericCallback(res));
 });
 
-rutasCartuchos.route('/cartuchos').post((req, res) => {
-  crearCartuchos(req.body, genercartuchosicCallback(res));
+rutasCartucho.route('/cartuchos').post((req, res) => {
+  crearCartucho(req.body, genericCallback(res));
 });
 
-rutasCartuchos.route('/cartuchos/:id').get((req, res) => {
+rutasCartucho.route('/cartuchos/:id').get((req, res) => {
   console.log('alguien hizo get en la ruta /cartuchos');
-  consultarCartuchos(req.params.id, genericCallback(res));
+  consultarCartucho(req.params.id, genericCallback(res));
 });
 
-rutasCartuchos.route('/cartuchos/:id').patch((req, res) => {
-  editarCartuchos(req.params.id, req.body, genericCallback(res));
+rutasCartucho.route('/cartuchos/:id').patch((req, res) => {
+  editarCartucho(req.params.id, req.body, genericCallback(res));
 });
 
-rutasCartuchos.route('/cartuchos/:id').delete((req, res) => {
-  eliminarCartuchos(req.params.id, genericCallback(res));
+rutasCartucho.route('/cartuchos/:id').delete((req, res) => {
+  eliminarCartucho(req.params.id, genericCallback(res));
 });
 
-export default rutasCartuchos;
+export default rutasCartucho;
 
 /*import Express from 'express';
 import { getDB } from '../../db/db';

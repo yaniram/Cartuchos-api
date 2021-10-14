@@ -1,49 +1,49 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/db.js';
 
-const queryAllCartuchos = async (callback) => {
+const queryAllCartridges = async (callback) => {
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('cartuchos').find({}).limit(50).toArray(callback);
+  await baseDeDatos.collection('cartucho').find({}).limit(50).toArray(callback);
 };
 
-const crearCartuchos = async (datosCartuchos, callback) => {
+const crearCartucho = async (datosCartucho, callback) => {
   if (
-    Object.keys(datosCartuchos).includes('name') &&
-    Object.keys(datosCartuchos).includes('brand') &&
-    Object.keys(datosCartuchos).includes('ink')
+    Object.keys(datosCartucho).includes('name') &&
+    Object.keys(datosCartucho).includes('brand') &&
+    Object.keys(datosCartucho).includes('ink')
   ) {
     const baseDeDatos = getDB();
     // implementar código para crear vehículo en la BD
 
-    await baseDeDatos.collection('cartuchos').insertOne(datosCartuchos, callback);
+    await baseDeDatos.collection('cartucho').insertOne(datosCartucho, callback);
   } else {
     return 'error';
   }
 };
 
-const consultarCartuchos = async (id, callback) => {
+const consultarCartucho = async (id, callback) => {
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('cartuchos').findOne({ _id: new ObjectId(id) }, callback);
+  await baseDeDatos.collection('cartucho').findOne({ _id: new ObjectId(id) }, callback);
 };
 
-const editarCartuchos = async (id, edicion, callback) => {
-  const filtroCartuchos = { _id: new ObjectId(id) };
+const editarCartucho = async (id, edicion, callback) => {
+  const filtroCartucho = { _id: new ObjectId(id) };
   const operacion = {
     $set: edicion,
   };
   const baseDeDatos = getDB();
   await baseDeDatos
-    .collection('cartuchos')
-    .findOneAndUpdate(filtroCartuchos, operacion, { upsert: true, returnOriginal: true }, callback);
+    .collection('cartucho')
+    .findOneAndUpdate(filtroCartucho, operacion, { upsert: true, returnOriginal: true }, callback);
 };
 
-const eliminarCartuchos = async (id, callback) => {
-  const filtroCartuchos = { _id: new ObjectId(id) };
+const eliminarCartucho = async (id, callback) => {
+  const filtroCartucho = { _id: new ObjectId(id) };
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('cartuchos').deleteOne(filtroCartuchos, callback);
+  await baseDeDatos.collection('cartucho').deleteOne(filtroCartucho, callback);
 };
 
-export { queryAllCartuchos, crearCartuchos, consultarCartuchos, editarCartuchos, eliminarCartuchos };
+export { queryAllCartridges, crearCartucho, consultarCartucho, editarCartucho, eliminarCartucho };
 
 /*import { getDB } from '../db/db.js';
 import { ObjectId } from 'mongodb';
