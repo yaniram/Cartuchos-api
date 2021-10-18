@@ -33,6 +33,7 @@ rutasCartucho.route('/cartuchos/:id').get((req, res) => {
 });
 
 rutasCartucho.route('/cartuchos/:id').patch((req, res) => {
+  console.log('alguien hizo patch en la ruta /cartuchos');
   editarCartucho(req.params.id, req.body, genericCallback(res));
 });
 
