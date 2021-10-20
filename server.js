@@ -23,7 +23,7 @@ var jwtCheck = jwt({
       jwksRequestsPerMinute: 5,
       jwksUri: 'https://misiontic-todoink.us.auth0.com/.well-known/jwks.json'
 }),
-audience: 'https://api-autenticacion-todoink-misiontic/',
+audience: 'api-autenticacion-todoink-cartuchos',
 issuer: 'https://misiontic-todoink.us.auth0.com/',
 algorithms: ['RS256']
 });
@@ -35,7 +35,7 @@ app.use(rutasVenta);
 
 const main = () => {
   return app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port: ${process.env.PORT}`);
+    console.log(`Escuchando puerto ${process.env.PORT}`);
   });
 };
 
