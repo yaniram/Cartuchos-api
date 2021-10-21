@@ -779,11 +779,6 @@ mongodb@^4.1.3:
   optionalDependencies:
     saslprep "^1.0.3"
 
-mongodg@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/mongodg/-/mongodg-0.1.0.tgz#fb961c2f1821af5904d6c09d37b5dfb78d4ca323"
-  integrity sha1-+5YcLxghr1kE1sCdN7Xft41MoyM=
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
