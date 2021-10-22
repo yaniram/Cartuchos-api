@@ -2,6 +2,8 @@ import Express from 'express'; //hacer un nuevo import
 import Cors from 'cors';
 import dotenv from 'dotenv';
 import { conectarBD } from './db/db.js';
+import jwt from "express-jwt";
+import jwks from "jwks-rsa";
 import rutasCartucho from './views/cartuchos/rutas.js';
 import rutasUsuario from './views/usuarios/rutas.js';
 import rutasVenta from './views/ventas/rutas.js';
@@ -13,15 +15,33 @@ const app = Express();
 
 app.use(Express.json());
 app.use(Cors());
+
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://misiontic-todoink.us.auth0.com/.well-known/jwks.json'
+}),
+audience: 'api-autenticacion-todoink-cartuchos',
+issuer: 'https://misiontic-todoink.us.auth0.com/',
+algorithms: ['RS256']
+});
+
+//4. El Back le pregunta a Auth0 si el token es válido
+//5. Auth0 responde validez del token
+
+app.use(jwtCheck);
 app.use(rutasCartucho);
 app.use(rutasUsuario);
 app.use(rutasVenta);
 app.use(productRoutes);
 
 const main = () => {
-	return app.listen(process.env.PORT, () => {
-		console.log(`Server is running on port: ${process.env.PORT}`);
-	});
+
+  return app.listen(process.env.PORT, () => {
+    console.log(`Escuchando puerto ${process.env.PORT}`);
+  });
 };
 
 conectarBD(main);
