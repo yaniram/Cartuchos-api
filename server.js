@@ -28,6 +28,9 @@ issuer: 'https://misiontic-todoink.us.auth0.com/',
 algorithms: ['RS256']
 });
 
+//4. El Back le pregunta a Auth0 si el token es válido
+//5. Auth0 responde validez del token
+
 app.use(jwtCheck);
 app.use(rutasCartucho);
 app.use(rutasUsuario);
