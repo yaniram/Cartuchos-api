@@ -1,4 +1,4 @@
-import Express from "express"; //hacer un nuevo import
+import Express from 'express'; //hacer un nuevo import
 import Cors from 'cors';
 import dotenv from 'dotenv';
 import { conectarBD } from './db/db.js';
@@ -7,9 +7,9 @@ import jwks from "jwks-rsa";
 import rutasCartucho from './views/cartuchos/rutas.js';
 import rutasUsuario from './views/usuarios/rutas.js';
 import rutasVenta from './views/ventas/rutas.js';
+import productRoutes from './views/productos/routes.js';
 
-
-dotenv.config({path:'./.env'});
+dotenv.config({ path: './.env' });
 
 const app = Express();
 
@@ -35,8 +35,10 @@ app.use(jwtCheck);
 app.use(rutasCartucho);
 app.use(rutasUsuario);
 app.use(rutasVenta);
+app.use(productRoutes);
 
 const main = () => {
+
   return app.listen(process.env.PORT, () => {
     console.log(`Escuchando puerto ${process.env.PORT}`);
   });
